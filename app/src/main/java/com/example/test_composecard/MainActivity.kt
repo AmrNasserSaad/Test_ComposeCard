@@ -8,8 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +29,9 @@ class MainActivity : ComponentActivity() {
 
                 ) {
                     MyCustomCard(
+                        glowingColor = Color.White,
+                        cornerRadius = 20.dp,
+                        glowingRadius = 16.dp,
                         modifier = Modifier.fillMaxWidth(fraction = 0.8f),
                         cardImg = R.drawable.elephant,
                         cardTitle = "Shadows & Lightning",

@@ -1,5 +1,6 @@
 package com.example.test_composecard
 
+import android.graphics.Paint
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
@@ -24,7 +25,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -32,6 +36,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.test_composecard.ui.theme.MutedBlack
@@ -50,15 +55,47 @@ fun MyCustomCard(
     @DrawableRes cardImg: Int,
     cardTitle: String,
     cardDescription: String,
-    publisher: Publisher
-) {
+    publisher: Publisher,
+    glowingColor: Color,
+    containColor: Color = Color.White,
+    cornerRadius: Dp = 0.dp,
+    glowingRadius: Dp = 20.dp,
+    xShift: Dp = 0.dp,
+    yShift: Dp = 0.dp,
+
+
+    ) {
     // for a little animation
     var showFullText by remember {
         mutableStateOf(false)
     }
 
     Card(
-        modifier = Modifier.animateContentSize().padding(20.dp),
+        modifier = Modifier
+            .animateContentSize()
+            .padding(20.dp)
+            .drawBehind {
+                val size = this.size
+                drawContext.canvas.nativeCanvas.apply {
+                    drawRoundRect(
+                        0f,
+                        0f,
+                        size.width,
+                        size.height,
+                        cornerRadius.toPx(),
+                        cornerRadius.toPx(),
+                        Paint().apply {
+                            color = containColor.copy(alpha = 0.3f).toArgb()
+                            setShadowLayer(
+                                glowingRadius.toPx(),
+                                xShift.toPx(), yShift.toPx(),
+                                glowingColor.toArgb()
+                            )
+                        }
+
+                    )
+                }
+            },
         shape = MaterialTheme.shapes.medium,
         colors = CardDefaults.cardColors(containerColor = MutedBlack)
     ) {
