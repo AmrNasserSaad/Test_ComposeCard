@@ -23,5 +23,3 @@ Provide instructions for using your project.
 ## Contributing
 Outline how others can contribute to your project.
 
-## License
-Include information about the license.
