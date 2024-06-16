@@ -17,8 +17,6 @@ Add a brief description of the Test_ComposeCard here.
 ## Installation
 Provide instructions for installing your project.
 
-## Usage
-Provide instructions for using your project.
 
 ## Contributing
 Outline how others can contribute to your project.
