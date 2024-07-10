@@ -18,6 +18,4 @@ Add a brief description of the Test_ComposeCard here.
 Provide instructions for installing your project.
 
 
-## Contributing
-Outline how others can contribute to your project.
 
