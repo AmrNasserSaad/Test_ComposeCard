@@ -1,6 +1,6 @@
 # Test_ComposeCard
 
-## Screenshots with Glowing Effects
+## Screenshots with Glowing Effects 
 
 <div style="display: flex; flex-direction: row; justify-content: center;">
     <div style="margin-right: 10px;">
